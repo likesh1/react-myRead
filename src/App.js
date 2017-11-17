@@ -36,9 +36,27 @@ class BooksApp extends React.Component {
             )
     }
 
+    changeBookShelf = (books) => {
+        let all_Books = this.state.books
+        for (let book of books) {
+            book.shelf = "none"
+        }
+
+        for (let book of books) {
+            for (let b of all_Books) {
+                if (b.id === book.id) {
+                    book.shelf = b.shelf
+                }
+            }
+        }
+        return books
+    }
+
     searchList = (query, maxResults) => {
         BooksAPI.search(query, maxResults)
             .then((books) => {
+                    books = this.changeBookShelf(books)
+                    console.log(books)
                     this.setState({searchBook: books});
                 }
             );
