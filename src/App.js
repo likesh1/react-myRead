@@ -1,9 +1,10 @@
 import _ from 'lodash'
 import React from 'react'
-import {Route} from 'react-router-dom'
+import {Switch,Route} from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
 import './App.css'
 import Search from './Search'
+import NoMatch from './NoMatch';
 import DisplayBooks from './DisplayBooks'
 import {Link} from 'react-router-dom'
 
@@ -38,14 +39,17 @@ class BooksApp extends React.Component {
 
     changeBookShelf = (books) => {
         let all_Books = this.state.books
-        for (let book of books) {
-            book.shelf = "none"
-        }
+        if (books) {
+            for (let book of books) {
+                book.shelf = "none"
+            }
 
-        for (let book of books) {
-            for (let b of all_Books) {
-                if (b.id === book.id) {
-                    book.shelf = b.shelf
+
+            for (let book of books) {
+                for (let b of all_Books) {
+                    if (b.id === book.id) {
+                        book.shelf = b.shelf
+                    }
                 }
             }
         }
@@ -65,11 +69,12 @@ class BooksApp extends React.Component {
     render() {
         const searchListQuery = _.debounce((query, maxResults) => {
             this.searchList(query, maxResults)
-        }, 300);
+        }, 100);
         const currentlyReading = this.state.books.filter(book => book.shelf === 'currentlyReading');
         const wantToRead = this.state.books.filter((book) => book.shelf === 'wantToRead')
         const readAlready = this.state.books.filter((book) => book.shelf === 'read')
         return (<div className="app">
+            <Switch>
                 <Route exact path='/' render={() => (
                     <div>
                         <DisplayBooks
@@ -92,6 +97,8 @@ class BooksApp extends React.Component {
                         changeBookSelf={this.changeBookSelf}
                     />
                 )}/>
+                <Route component={NoMatch}/>
+            </Switch>
             </div>
         )
     }
