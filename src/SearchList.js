@@ -3,8 +3,6 @@ import React from 'react'
 class SearchList extends React.Component {
     render() {
         const x = this.props.books;
-        console.log(this.props.books);
-
         const m = this.props.changeBookSelf;
         if (x == undefined || !x.length) {
             return (<div> waiting for the search query</div>)

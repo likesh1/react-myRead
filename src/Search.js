@@ -10,7 +10,6 @@ class Search extends React.Component {
         query: ''
     }
 
-
     querying(event) {
         this.setState({query: event});
         this.props.SearchList(event, 20)
@@ -20,7 +19,6 @@ class Search extends React.Component {
         return (
 
             <div className="search-books">
-
                 <div className="search-books-bar">
                     <Link to='/' className="close-search">Close</Link>
                     <div className="search-books-input-wrapper">

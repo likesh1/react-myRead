@@ -1,8 +1,9 @@
 import React from 'react'
 import BookListDisplay from './CurrentlyReading'
-import {Link} from 'react-router-dom'
+
 
 class DisplayBooks extends React.Component {
+
 
     render() {
 
@@ -49,9 +50,7 @@ class DisplayBooks extends React.Component {
                         </div>
                     </div>
                 </div>
-                <div className="open-search">
-                    <Link to='/search'>Add a book</Link>
-                </div>
+
             </div>
 
 
