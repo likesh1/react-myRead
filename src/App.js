@@ -10,8 +10,6 @@ import {Link} from 'react-router-dom'
 class BooksApp extends React.Component {
     constructor(props) {
         super(props);
-        this.changeBookSelf = this.changeBookSelf.bind(this);
-        this.searchList = this.searchList.bind(this);
     }
 
     state = {
@@ -26,7 +24,7 @@ class BooksApp extends React.Component {
     }
 
 
-    changeBookSelf(book, shelf) {
+    changeBookSelf = (book, shelf) => {
         BooksAPI.update(book, shelf)
             .then(
                 response => {
@@ -38,7 +36,7 @@ class BooksApp extends React.Component {
             )
     }
 
-    searchList(query, maxResults) {
+    searchList = (query, maxResults) => {
         BooksAPI.search(query, maxResults)
             .then((books) => {
                     this.setState({searchBook: books});

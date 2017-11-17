@@ -1,9 +1,8 @@
 import React from 'react'
-import BookListDisplay from './CurrentlyReading'
+import BookListDisplay from './BookListDisplay'
 
 
 class DisplayBooks extends React.Component {
-
 
     render() {
 
